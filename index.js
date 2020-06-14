@@ -190,6 +190,7 @@ let buttons = {
 };
 
 buttons.next.addEventListener('click', function() {
+    
 	lifeView.next();
 });
 
