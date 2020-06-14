@@ -4,7 +4,7 @@ function $(selector, container) {
 
 (function() {
 
-var _ = self.Life = function(seed) {
+let _ = self.Life = function(seed) {
 	this.seed = seed;
 	this.height = seed.length;
 	this.width = seed[0].length;
@@ -17,10 +17,10 @@ _.prototype = {
 	next: function () {
 		this.prevBoard = cloneArray(this.board);
 		
-		for (var y=0; y<this.height; y++) {
-			for (var x=0; x<this.width; x++) {
-				var neighbors = this.aliveNeighbors(this.prevBoard, x, y);
-				var alive = !!this.board[y][x];
+		for (let y=0; y<this.height; y++) {
+			for (let x=0; x<this.width; x++) {
+				let neighbors = this.aliveNeighbors(this.prevBoard, x, y);
+				let alive = !!this.board[y][x];
 				
 				if (alive) {
 					if (neighbors < 2 || neighbors > 3) {
@@ -37,8 +37,8 @@ _.prototype = {
 	},
 	
 	aliveNeighbors: function (array, x, y) {
-		var prevRow = array[y-1] || [];
-		var nextRow = array[y+1] || [];
+		let prevRow = array[y-1] || [];
+		let nextRow = array[y+1] || [];
 		
 		return [
 			prevRow[x-1], prevRow[x], prevRow[x+1],
@@ -64,7 +64,7 @@ function cloneArray(array) {
 
 (function(){
 
-var _ = self.LifeView = function (table, size) {
+let _ = self.LifeView = function (table, size) {
 	this.grid = table;
 	this.size = size;
 	this.started = false;
@@ -75,19 +75,19 @@ var _ = self.LifeView = function (table, size) {
 
 _.prototype = {
 	createGrid: function () {
-		var me = this;
+		let me = this;
 		
-		var fragment = document.createDocumentFragment();
+		let fragment = document.createDocumentFragment();
 		this.grid.innerHTML = '';
 		this.checkboxes = [];
 		
-		for (var y=0; y<this.size; y++) {
-			var row = document.createElement('tr');
+		for (let y=0; y<this.size; y++) {
+			let row = document.createElement('tr');
 			this.checkboxes[y] = [];
 			
-			for (var x=0; x<this.size; x++) {
-				var cell = document.createElement('td');
-				var checkbox = document.createElement('input');
+			for (let x=0; x<this.size; x++) {
+				let cell = document.createElement('td');
+				let checkbox = document.createElement('input');
 				checkbox.type = 'checkbox';
 				this.checkboxes[y][x] = checkbox;
 				checkbox.coords = [y, x];
@@ -106,13 +106,13 @@ _.prototype = {
 		});
 		
 		this.grid.addEventListener('keyup', function(evt) {
-			var checkbox = evt.target;
+			let checkbox = evt.target;
 			
 			if (checkbox.nodeName.toLowerCase() == 'input') {
-				var coords = checkbox.coords;
-				var y = coords[0];
-				var x = coords[1];
-				
+				let coords = checkbox.coords;
+				let y = coords[0];
+				let x = coords[1];
+				//keboard access
 				switch (evt.keyCode) {
 					case 37: // left
 						if (x > 0) {
@@ -155,7 +155,7 @@ _.prototype = {
 	},
 	
 	next: function () {
-		var me = this;
+		let me = this;
 		
 		if (!this.started || this.game) {
 			this.play();
@@ -163,10 +163,10 @@ _.prototype = {
 		
 		this.game.next();
 		
-		var board = this.game.board;
+		let board = this.game.board;
 		
-		for (var y=0; y<this.size; y++) {
-			for (var x=0; x<this.size; x++) {
+		for (let y=0; y<this.size; y++) {
+			for (let x=0; x<this.size; x++) {
 				this.checkboxes[y][x].checked = !!board[y][x];
 			}
 		}
@@ -181,11 +181,11 @@ _.prototype = {
 
 })();
 
-var lifeView = new LifeView(document.getElementById('grid'), 12);
+let lifeView = new LifeView(document.getElementById('grid'), 12);
 
 (function() {
 
-var buttons = {
+let buttons = {
 	next: $('button.next')
 };
 
