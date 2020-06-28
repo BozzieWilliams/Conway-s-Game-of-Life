@@ -10,7 +10,7 @@ The universe of the Game of Life is an infinite, two-dimensional orthogonal grid
 
 -Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
 
-These rules, which compare the behavior of the automaton to real life, can be condensed into the following:
+# These rules, which compare the behavior of the automaton to real life, can be condensed into the following:
 
 -Any live cell with two or three live neighbours survives.
 
