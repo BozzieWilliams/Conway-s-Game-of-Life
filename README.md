@@ -23,4 +23,4 @@ The initial pattern constitutes the seed of the system. The first generation is 
 
 [Check it Out Here](https://bozziewilliams.github.io/Conway-s-Game-of-Life/)
 
-000000000000
+000000
