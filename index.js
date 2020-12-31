@@ -208,15 +208,4 @@ let lifeView = new LifeView(document.getElementById("grid"), 12);
       clearTimeout(lifeView.timer);
     }
   });
-
-  $("#rulesButton, #gameRules").click((e) => {
-    if ($(e.target).attr("id") != "closeButton") {
-      $("#gameRules").show();
-      event.stopPropagation();
-    }
-  });
-  $("body, #closeButton").click(() => {
-    $("#gameRules").hide();
-    event.stopPropagation();
-  });
 })();
