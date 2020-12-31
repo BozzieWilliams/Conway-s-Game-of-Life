@@ -13,7 +13,7 @@ function $(selector, container) {
   });
 
   _.prototype = {
-    next() {
+    next: function () {
       this.prevBoard = cloneArray(this.board);
 
       for (let y = 0; y < this.height; y++) {
@@ -34,7 +34,7 @@ function $(selector, container) {
       }
     },
 
-    aliveNeighbors(array, x, y) {
+    aliveNeighbors: function (array, x, y) {
       let prevRow = array[y - 1] || [];
       let nextRow = array[y + 1] || [];
 
@@ -52,7 +52,7 @@ function $(selector, container) {
       }, 0);
     },
 
-    toString() {
+    toString: function () {
       return this.board
         .map(function (row) {
           return row.join(" ");
@@ -81,7 +81,7 @@ function $(selector, container) {
   });
 
   _.prototype = {
-    createGrid() {
+    createGrid: function () {
       let me = this;
 
       let fragment = document.createDocumentFragment();
@@ -156,12 +156,12 @@ function $(selector, container) {
       });
     },
 
-    play() {
+    play: function () {
       this.game = new Life(this.boardArray);
       this.started = true;
     },
 
-    next() {
+    next: function () {
       let me = this;
 
       if (!this.started || this.game) {
@@ -177,8 +177,9 @@ function $(selector, container) {
           this.checkboxes[y][x].checked = !!board[y][x];
         }
       }
+
       if (this.autoplay) {
-        this.timer = setTimeout(() => {
+        this.timer = setTimeout(function () {
           me.next();
         }, 1000);
       }
@@ -187,15 +188,35 @@ function $(selector, container) {
 })();
 
 let lifeView = new LifeView(document.getElementById("grid"), 12);
-(() => {
+
+(function () {
   let buttons = {
     next: $("button.next"),
   };
-  buttons.next.addEventListener("click", () => lifeView.next());
-  $("#autoplay").addEventListener("change", () => {
+
+  buttons.next.addEventListener("click", function () {
+    lifeView.next();
+  });
+
+  $("#autoplay").addEventListener("change", function () {
     buttons.next.disabled = this.checked;
-    this.checked
-      ? (lifeView.autoplay = this.checked)(lifeView.next())
-      : clearTimeout(lifeView.timer);
+
+    if (this.checked) {
+      lifeView.autoplay = this.checked;
+      lifeView.next();
+    } else {
+      clearTimeout(lifeView.timer);
+    }
+  });
+
+  $("#rulesButton, #gameRules").click((e) => {
+    if ($(e.target).attr("id") != "closeButton") {
+      $("#gameRules").show();
+      event.stopPropagation();
+    }
+  });
+  $("body, #closeButton").click(() => {
+    $("#gameRules").hide();
+    event.stopPropagation();
   });
 })();
