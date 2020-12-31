@@ -87,6 +87,7 @@ input[type="checkbox"]:checked + label.button {
 .source__Code{
 	height: 25px;
 	object-fit: contain;
+	border-bottom: dotted medium green;
 }
 
 button:disabled {
