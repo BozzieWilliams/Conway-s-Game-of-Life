@@ -13,7 +13,7 @@ function $(selector, container) {
   });
 
   _.prototype = {
-    next: function () {
+    next() {
       this.prevBoard = cloneArray(this.board);
 
       for (let y = 0; y < this.height; y++) {
@@ -34,7 +34,7 @@ function $(selector, container) {
       }
     },
 
-    aliveNeighbors: function (array, x, y) {
+    aliveNeighbors(array, x, y) {
       let prevRow = array[y - 1] || [];
       let nextRow = array[y + 1] || [];
 
@@ -52,7 +52,7 @@ function $(selector, container) {
       }, 0);
     },
 
-    toString: function () {
+    toString() {
       return this.board
         .map(function (row) {
           return row.join(" ");
@@ -81,7 +81,7 @@ function $(selector, container) {
   });
 
   _.prototype = {
-    createGrid: function () {
+    createGrid() {
       let me = this;
 
       let fragment = document.createDocumentFragment();
@@ -156,12 +156,12 @@ function $(selector, container) {
       });
     },
 
-    play: function () {
+    play() {
       this.game = new Life(this.boardArray);
       this.started = true;
     },
 
-    next: function () {
+    next() {
       let me = this;
 
       if (!this.started || this.game) {
