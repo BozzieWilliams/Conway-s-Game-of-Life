@@ -177,9 +177,8 @@ function $(selector, container) {
           this.checkboxes[y][x].checked = !!board[y][x];
         }
       }
-
       if (this.autoplay) {
-        this.timer = setTimeout(function () {
+        this.timer = setTimeout(() => {
           me.next();
         }, 1000);
       }
@@ -188,24 +187,15 @@ function $(selector, container) {
 })();
 
 let lifeView = new LifeView(document.getElementById("grid"), 12);
-
-(function () {
+(() => {
   let buttons = {
     next: $("button.next"),
   };
-
-  buttons.next.addEventListener("click", function () {
-    lifeView.next();
-  });
-
-  $("#autoplay").addEventListener("change", function () {
+  buttons.next.addEventListener("click", () => lifeView.next());
+  $("#autoplay").addEventListener("change", () => {
     buttons.next.disabled = this.checked;
-
-    if (this.checked) {
-      lifeView.autoplay = this.checked;
-      lifeView.next();
-    } else {
-      clearTimeout(lifeView.timer);
-    }
+    this.checked
+      ? (lifeView.autoplay = this.checked)(lifeView.next())
+      : clearTimeout(lifeView.timer);
   });
 })();
