@@ -78,6 +78,16 @@ input[type="checkbox"]:checked + label.button {
 	width: 350px;
 	padding: 10px;
 }
+.source{
+	width: 350px;
+	display: flex;
+	flex-direction: row;
+	margin-left:550px;
+}
+.source__Code{
+	height: 25px;
+	object-fit: contain;
+}
 
 button:disabled {
 	background-color: hsl(80,20%,40%);
