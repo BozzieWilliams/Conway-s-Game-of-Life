@@ -72,22 +72,24 @@ input[type="checkbox"]:checked + label.button {
 	background-image: none;
 	box-shadow: 0 .1em .3em rgba(0,0,0,.5) inset;
 }
-.inst{
-	margin: 30px auto;
+.inst, a{
+	margin: 20px auto;
 	box-shadow: 0 .1em .3em rgba(0,0,0,.5) inset;
 	width: 350px;
 	padding: 10px;
+	text-decoration: none;
 }
 .source{	
-	width: 350px;
+	width: fit-content;
 	display: flex;
 	flex-direction: row;
-	margin-left:550px;
+	margin: auto;
 }
 .source__Code{
-	height: 25px;
+	height: 20px;
 	object-fit: contain;
 	border-bottom: dotted medium green;
+	background-color: transparent;
 }
 
 button:disabled {
